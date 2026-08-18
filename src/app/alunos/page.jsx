@@ -1,4 +1,5 @@
 "use client"; 
+
 import { useState } from "react";
 import Link from "next/link";
 import "./Alunos.css";
@@ -115,14 +116,15 @@ export default function Alunos() {
         </div>
       )}
 
-      {/* Lista de alunos: aparece assim que a seleção estiver completa (ou usando a busca) */}
+      {/* Lista de alunos */}
       {(busca || (cursoSelecionado && serieSelecionada && (!configAtual.temTurmaAB || turmaSelecionada))) && (
         <div className="alunos-lista">
           {alunosFiltrados.length === 0 && (
             <p className="alunos-vazio">Nenhum aluno encontrado.</p>
           )}
           {alunosFiltrados.map((aluno) => (
-            <Link to={`/alunos/${aluno.id}`} key={aluno.id} className="aluno-card">
+            /* Corrigido aqui: 'to' virou 'href' */
+            <Link href={`/alunos/${aluno.id}`} key={aluno.id} className="aluno-card">
               <div className="aluno-avatar">{aluno.nome[0]}</div>
               <div>
                 <strong>{aluno.nome}</strong>
