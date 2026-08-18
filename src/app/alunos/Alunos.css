@@ -1,0 +1,122 @@
+.alunos {
+  font-family: system-ui, sans-serif;
+  color: #0a3d62;
+}
+
+.alunos-busca {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #cfdbe6;
+  margin: 1rem 0;
+  box-sizing: border-box;
+  font-size: 0.9rem;
+}
+
+.alunos-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.alunos-filtros button {
+  border: none;
+  background: #eef6fc;
+  color: #1e6091;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.alunos-filtros button:hover {
+  background: #dcecf9;
+}
+
+.alunos-filtros button.ativo {
+  background: #1e6091;
+  color: white;
+}
+
+.alunos-caminho {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.voltar-btn {
+  border: none;
+  background: none;
+  color: #1e6091;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem 0.2rem 0;
+}
+
+.voltar-btn:hover {
+  text-decoration: underline;
+}
+
+.caminho-texto {
+  color: #5b7fa6;
+  font-weight: 500;
+}
+
+.alunos-vazio {
+  color: #5b7fa6;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.alunos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.aluno-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 12px rgba(10, 61, 98, 0.06);
+}
+
+.aluno-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #1e6091;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.aluno-card strong {
+  font-size: 0.95rem;
+}
+
+.aluno-card p {
+  margin: 0.2rem 0;
+  font-size: 0.8rem;
+  color: #5b7fa6;
+}
+
+.aluno-situacao {
+  font-size: 0.75rem;
+  color: #1e9e6b;
+  font-weight: 600;
+}

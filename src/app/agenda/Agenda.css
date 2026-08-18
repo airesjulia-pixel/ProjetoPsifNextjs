@@ -1,0 +1,38 @@
+.agenda {
+  font-family: system-ui, sans-serif;
+  color: #0a3d62;
+}
+
+.agenda-hoje {
+  background: white;
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(10, 61, 98, 0.06);
+}
+
+.agenda-item {
+  display: flex;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #eef3f8;
+  font-size: 0.9rem;
+}
+
+.agenda-item p {
+  margin: 0;
+}
+
+.agenda-item span {
+  font-size: 0.8rem;
+  color: #5b7fa6;
+}
+
+.agenda-novo {
+  background: #1e6091;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}

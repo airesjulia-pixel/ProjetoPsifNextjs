@@ -1,0 +1,40 @@
+.novo-atendimento {
+  font-family: system-ui, sans-serif;
+  color: #0a3d62;
+  max-width: 480px;
+}
+
+.novo-atendimento label {
+  display: block;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.novo-atendimento select,
+.novo-atendimento input,
+.novo-atendimento textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #cfdbe6;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.novo-atendimento button {
+  margin-top: 1.5rem;
+  width: 100%;
+  background: #1e6091;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.novo-atendimento button:hover {
+  background: #0a3d62;
+}

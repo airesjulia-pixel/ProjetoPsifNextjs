@@ -1,0 +1,46 @@
+.documentos {
+  font-family: system-ui, sans-serif;
+  color: #0a3d62;
+}
+
+.documentos-busca {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #cfdbe6;
+  margin: 1rem 0;
+  box-sizing: border-box;
+}
+
+.documentos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.documento-item {
+  background: white;
+  border-radius: 10px;
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(10, 61, 98, 0.06);
+}
+
+.documento-item span {
+  display: block;
+  font-size: 0.75rem;
+  color: #5b7fa6;
+}
+
+.documentos-add {
+  background: #1e6091;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}

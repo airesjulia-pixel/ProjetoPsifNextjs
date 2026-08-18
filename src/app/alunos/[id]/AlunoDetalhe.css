@@ -1,0 +1,75 @@
+.aluno-detalhe {
+  font-family: system-ui, sans-serif;
+  color: #0a3d62;
+}
+
+.voltar {
+  color: #1e6091;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.aluno-detalhe-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.aluno-avatar-grande {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #1e6091;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.aluno-detalhe-header h1 {
+  margin: 0 0 0.3rem;
+  font-size: 1.3rem;
+}
+
+.aluno-situacao {
+  font-size: 0.8rem;
+  color: #1e9e6b;
+  font-weight: 600;
+}
+
+.aluno-info-grid {
+  display: flex;
+  gap: 2rem;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(10, 61, 98, 0.06);
+  margin-bottom: 1.5rem;
+}
+
+.aluno-info-grid span {
+  display: block;
+  font-size: 0.75rem;
+  color: #5b7fa6;
+}
+
+.aluno-secoes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.aluno-secao-item {
+  background: white;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #0a3d62;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(10, 61, 98, 0.06);
+}

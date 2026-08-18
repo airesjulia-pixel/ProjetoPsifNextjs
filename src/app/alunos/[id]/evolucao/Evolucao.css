@@ -1,0 +1,149 @@
+.evolucao-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f4f7fb;
+}
+
+.evolucao-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 20px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e7ecf3;
+}
+
+.evolucao-voltar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: #eef2fa;
+  color: #1b2a4a;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.evolucao-voltar:hover {
+  background: #e1e8f5;
+}
+
+.evolucao-titulo-bloco {
+  display: flex;
+  flex-direction: column;
+}
+
+.evolucao-titulo-bloco h1 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1b2a4a;
+  margin: 0;
+}
+
+.evolucao-subtitulo {
+  font-size: 13px;
+  color: #8a93a6;
+}
+
+.evolucao-conteudo {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 20px 32px;
+}
+
+.evolucao-estado {
+  color: #8a93a6;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.evolucao-erro {
+  color: #d9534f;
+}
+
+.evolucao-linha {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.evolucao-item {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding-bottom: 28px;
+  padding-left: 4px;
+}
+
+.evolucao-item::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 22px;
+  bottom: -6px;
+  width: 2px;
+  background: #e1e8f5;
+}
+
+.evolucao-item:last-child::before {
+  display: none;
+}
+
+.evolucao-ponto {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-top: 2px;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 1px #e1e8f5;
+  z-index: 1;
+}
+
+.evolucao-ponto--verde {
+  background: #2ea86f;
+}
+
+.evolucao-ponto--azul {
+  background: #3b6fe0;
+}
+
+.evolucao-ponto--amarelo {
+  background: #f2a93b;
+}
+
+.evolucao-item-conteudo {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  flex: 1;
+  box-shadow: 0 1px 2px rgba(16, 30, 54, 0.04);
+}
+
+.evolucao-data {
+  font-size: 12px;
+  color: #8a93a6;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.evolucao-item-titulo {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1b2a4a;
+  margin: 0 0 4px;
+}
+
+.evolucao-item-descricao {
+  font-size: 13px;
+  color: #5b6472;
+  margin: 0;
+  line-height: 1.4;
+}

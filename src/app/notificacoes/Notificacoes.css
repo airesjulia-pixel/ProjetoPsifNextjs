@@ -1,0 +1,31 @@
+.notificacoes {
+  font-family: system-ui, sans-serif;
+  color: #0a3d62;
+}
+
+.notificacoes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.notificacao-item {
+  background: white;
+  border-radius: 10px;
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(10, 61, 98, 0.06);
+}
+
+.notificacao-item p {
+  margin: 0;
+}
+
+.notificacao-item span {
+  font-size: 0.75rem;
+  color: #5b7fa6;
+}
