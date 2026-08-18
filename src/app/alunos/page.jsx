@@ -39,7 +39,7 @@ export default function Alunos() {
   const cursos = Object.keys(cursosConfig);
   const configAtual = cursoSelecionado ? cursosConfig[cursoSelecionado] : null;
 
-  // monta o nome final da turma pra comparar com o mock (ex: "2ª série A")
+  
   const turmaCompleta =
     serieSelecionada && (configAtual?.temTurmaAB ? turmaSelecionada && `${serieSelecionada} ${turmaSelecionada}` : serieSelecionada);
 
@@ -71,7 +71,7 @@ export default function Alunos() {
         onChange={(e) => setBusca(e.target.value)}
       />
 
-      {/* Breadcrumb / caminho atual */}
+     
       {(cursoSelecionado || busca) && (
         <div className="alunos-caminho">
           {cursoSelecionado && (
@@ -83,7 +83,7 @@ export default function Alunos() {
         </div>
       )}
 
-      {/* Nível 1: escolher o curso */}
+      
       {!cursoSelecionado && (
         <div className="alunos-filtros">
           {cursos.map((c) => (
@@ -94,7 +94,6 @@ export default function Alunos() {
         </div>
       )}
 
-      {/* Nível 2: escolher a série/período dentro do curso */}
       {cursoSelecionado && !serieSelecionada && (
         <div className="alunos-filtros">
           {configAtual.opcoes.map((s) => (
@@ -105,7 +104,6 @@ export default function Alunos() {
         </div>
       )}
 
-      {/* Nível 3: escolher turma A/B (só quando o curso tem) */}
       {cursoSelecionado && serieSelecionada && configAtual.temTurmaAB && !turmaSelecionada && (
         <div className="alunos-filtros">
           {["A", "B"].map((t) => (
@@ -116,14 +114,12 @@ export default function Alunos() {
         </div>
       )}
 
-      {/* Lista de alunos */}
       {(busca || (cursoSelecionado && serieSelecionada && (!configAtual.temTurmaAB || turmaSelecionada))) && (
         <div className="alunos-lista">
           {alunosFiltrados.length === 0 && (
             <p className="alunos-vazio">Nenhum aluno encontrado.</p>
           )}
           {alunosFiltrados.map((aluno) => (
-            /* Corrigido aqui: 'to' virou 'href' */
             <Link href={`/alunos/${aluno.id}`} key={aluno.id} className="aluno-card">
               <div className="aluno-avatar">{aluno.nome[0]}</div>
               <div>
