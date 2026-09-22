@@ -1,3 +1,5 @@
+"use client";
+import { useRouter } from "next/navigation";
 import "./Agenda.css";
 
 const atendimentosHoje = [
@@ -6,6 +8,8 @@ const atendimentosHoje = [
 ];
 
 export default function Agenda() {
+  const router = useRouter();
+
   return (
     <div className="agenda">
       <h1>Agenda</h1>
@@ -21,7 +25,9 @@ export default function Agenda() {
           </div>
         ))}
       </div>
-      <button className="agenda-novo">+ Novo agendamento</button>
+      <button className="agenda-novo" onClick={() => router.push("/atendimentos")}>
+        + Novo agendamento
+      </button>
     </div>
   );
 }

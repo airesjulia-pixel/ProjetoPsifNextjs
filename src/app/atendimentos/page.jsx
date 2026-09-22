@@ -1,14 +1,30 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import "./NovoAtendimento.css";
 
 export default function NovoAtendimento() {
+  const searchParams = useSearchParams();
+  const alunoIdUrl = searchParams.get("alunoId");
+  const alunoNomeUrl = searchParams.get("alunoNome");
+
   const [form, setForm] = useState({
+    alunoId: "",
     aluno: "",
     data: "",
     tipo: "Individual",
     descricao: "",
   });
+
+  useEffect(() => {
+    if (alunoIdUrl) {
+      setForm((f) => ({
+        ...f,
+        alunoId: alunoIdUrl,
+        aluno: alunoNomeUrl || "",
+      }));
+    }
+  }, [alunoIdUrl, alunoNomeUrl]);
 
   function handleChange(campo, valor) {
     setForm({ ...form, [campo]: valor });
@@ -19,17 +35,23 @@ export default function NovoAtendimento() {
     alert("Atendimento salvo! (ainda sem conexão com o banco de dados)");
   }
 
+  const alunoJaSelecionado = Boolean(alunoIdUrl);
+
   return (
     <div className="novo-atendimento">
       <h1>Novo atendimento</h1>
 
       <label>Aluno</label>
-      <select value={form.aluno} onChange={(e) => handleChange("aluno", e.target.value)}>
-        <option value="">Selecione...</option>
-        <option>Anitta Peniwyse</option>
-        <option>José</option>
-        <option>Valquíria</option>
-      </select>
+      {alunoJaSelecionado ? (
+        <input type="text" value={form.aluno} disabled />
+      ) : (
+        <select value={form.aluno} onChange={(e) => handleChange("aluno", e.target.value)}>
+          <option value="">Selecione...</option>
+          <option>Anitta Peniwyse</option>
+          <option>José</option>
+          <option>Valquíria</option>
+        </select>
+      )}
 
       <label>Data</label>
       <input type="date" value={form.data} onChange={(e) => handleChange("data", e.target.value)} />

@@ -1,7 +1,10 @@
 "use client";
+import { useRouter } from "next/navigation";
 import "./Dashboard.css";
 
 export default function Dashboard() {
+  const router = useRouter();
+
   const proximosAtendimentos = [
     { hora: "09:00", nome: "Anitta Peniwyse" },
     { hora: "10:30", nome: "José" },
@@ -47,10 +50,10 @@ export default function Dashboard() {
         <div className="dashboard-panel">
           <h2>Ações rápidas</h2>
           <div className="dashboard-actions">
-            <button>+ Novo atendimento</button>
-            <button>+ Novo aluno</button>
-            <button>+ Novo relatório</button>
-            <button>📅 Agenda</button>
+            <button onClick={() => router.push("/atendimentos")}>+ Novo atendimento</button>
+            <button onClick={() => router.push("/alunos")}>+ Novo aluno</button>
+            <button onClick={() => router.push("/relatorios")}>+ Novo relatório</button>
+            <button onClick={() => router.push("/agenda")}>📅 Agenda</button>
           </div>
         </div>
       </div>

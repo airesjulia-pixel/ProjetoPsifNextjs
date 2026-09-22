@@ -19,7 +19,9 @@
 }
 
 .sidebar-logo-icon {
-  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  color: white;
 }
 
 .sidebar-logo strong {
@@ -41,6 +43,9 @@
 }
 
 .sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   color: #cfe0f0;
   text-decoration: none;
   padding: 0.7rem 0.8rem;
@@ -60,6 +65,9 @@
 }
 
 .sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   background: transparent;
   border: 1px solid #2c5f88;
   color: #cfe0f0;

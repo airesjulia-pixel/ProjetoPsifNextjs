@@ -1,6 +1,6 @@
-"use client"; 
+"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import "./Alunos.css";
 
@@ -22,28 +22,63 @@ const cursosConfig = {
   },
 };
 
-const alunosMock = [
-  { id: 1, nome: "Anitta Peniwyse", curso: "Informática", turma: "3ª série", situacao: "Em acompanhamento" },
-  { id: 2, nome: "José", curso: "Informática", turma: "3ª série", situacao: "Em acompanhamento" },
-  { id: 3, nome: "Valquíria", curso: "Energias Renováveis", turma: "2ª série A", situacao: "Em acompanhamento" },
-  { id: 4, nome: "Maria Eduarda", curso: "Energias Renováveis", turma: "1ª série B", situacao: "Alta" },
-  { id: 5, nome: "Rafael", curso: "ADS", turma: "4º período", situacao: "Em acompanhamento" },
-];
-
 export default function Alunos() {
   const [busca, setBusca] = useState("");
-  const [cursoSelecionado, setCursoSelecionado] = useState(null); // ex: "Informática"
-  const [serieSelecionada, setSerieSelecionada] = useState(null); // ex: "1ª série" ou "1º período"
-  const [turmaSelecionada, setTurmaSelecionada] = useState(null); // ex: "A" ou "B"
+  const [cursoSelecionado, setCursoSelecionado] = useState(null);
+  const [serieSelecionada, setSerieSelecionada] = useState(null);
+  const [turmaSelecionada, setTurmaSelecionada] = useState(null);
+  const [alunos, setAlunos] = useState([]);
+
+  const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const APIKEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+
+  // remove barra final e "/rest/v1" caso já estejam na variável de ambiente
+  const SUPABASE_BASE = SUPABASE_URL?.replace(/\/rest\/v1\/?$/, "").replace(/\/$/, "");
+
+  const buscarAlunos = async () => {
+    try {
+      const response = await fetch(`${SUPABASE_BASE}/rest/v1/alunos?select=*`, {
+        headers: {
+          apikey: APIKEY,
+          Authorization: `Bearer ${APIKEY}`,
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("Erro ao buscar alunos:", data);
+        setAlunos([]);
+        return;
+      }
+
+      if (!Array.isArray(data)) {
+        console.error("Resposta inesperada da API:", data);
+        setAlunos([]);
+        return;
+      }
+
+      setAlunos(data);
+    } catch (error) {
+      console.error("Erro ao buscar alunos:", error);
+      setAlunos([]);
+    }
+  };
+
+  useEffect(() => {
+    buscarAlunos();
+  }, []);
 
   const cursos = Object.keys(cursosConfig);
   const configAtual = cursoSelecionado ? cursosConfig[cursoSelecionado] : null;
 
-  
   const turmaCompleta =
-    serieSelecionada && (configAtual?.temTurmaAB ? turmaSelecionada && `${serieSelecionada} ${turmaSelecionada}` : serieSelecionada);
+    serieSelecionada &&
+    (configAtual?.temTurmaAB
+      ? turmaSelecionada && `${serieSelecionada} ${turmaSelecionada}`
+      : serieSelecionada);
 
-  const alunosFiltrados = alunosMock.filter((a) => {
+  const alunosFiltrados = (Array.isArray(alunos) ? alunos : []).filter((a) => {
     const bateBusca = a.nome.toLowerCase().includes(busca.toLowerCase());
     const bateCurso = !cursoSelecionado || a.curso === cursoSelecionado;
     const bateTurma = !turmaCompleta || a.turma === turmaCompleta;
@@ -71,7 +106,6 @@ export default function Alunos() {
         onChange={(e) => setBusca(e.target.value)}
       />
 
-     
       {(cursoSelecionado || busca) && (
         <div className="alunos-caminho">
           {cursoSelecionado && (
@@ -83,7 +117,6 @@ export default function Alunos() {
         </div>
       )}
 
-      
       {!cursoSelecionado && (
         <div className="alunos-filtros">
           {cursos.map((c) => (

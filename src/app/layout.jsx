@@ -7,17 +7,17 @@ import Layout from "../components/Layout";
 
 export default function RootLayout({ children }) {
   const [usuario, setUsuario] = useState(null);
-
-  if (usuario) {
-    return (
-      <html lang="pt-BR">
-        <body>
-          <Login onLogin={(user) => setUsuario(user)} />
-        </body>
-      </html>
-    );
-  }
-
+  /*
+   if (!usuario) {
+     return (
+       <html lang="pt-BR">
+         <body>
+           <Login onLogin={(user) => setUsuario(user)} />
+         </body>
+       </html>
+     );
+   }
+ */
   return (
     <html lang="pt-BR">
       <body>
