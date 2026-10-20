@@ -1,62 +1,205 @@
 "use client";
+
 import { useRouter } from "next/navigation";
-import "./Dashboard.css";
 
 export default function Dashboard() {
   const router = useRouter();
 
-  const proximosAtendimentos = [
-    { hora: "09:00", nome: "Anitta Peniwyse" },
-    { hora: "10:30", nome: "José" },
-    { hora: "14:00", nome: "Valquíria" },
-  ];
-
   return (
-    <div className="dashboard">
-      <h1>Olá! 👋</h1>
-      <p className="dashboard-subtitle">Bom dia!</p>
+    <div style={styles.pageWrapper}>
+      {/* Cabeçalho */}
+      <header style={styles.header}>
+        <div>
+          <h1 style={styles.title}>Olá, Psicopedagoga! 👋</h1>
+          <p style={styles.subtitle}>
+            Plataforma de Suporte Psicopedagógico (PSIF) • Visão Geral
+          </p>
+        </div>
+      </header>
 
-      <div className="dashboard-cards">
-        <div className="dashboard-card">
-          <span className="dashboard-card-number">08</span>
-          <span className="dashboard-card-label">Atendimentos hoje</span>
+      {/* Grade com os 4 Cards de Métricas do Figma */}
+      <div style={styles.metricsGrid}>
+        {/* Card 1: Alunos Ativos (Em destaque, clicável) */}
+        <div
+          style={styles.cardDestaque}
+          onClick={() => router.push("/alunos")}
+        >
+          <div style={styles.cardHeader}>
+            <span style={styles.cardLabel}>Alunos Ativos</span>
+            <span style={styles.cardIcon}>👥</span>
+          </div>
+          <div style={styles.cardNumberDestaque}>124</div>
+          <span style={styles.cardLink}>Ver todos os alunos →</span>
         </div>
-        <div className="dashboard-card">
-          <span className="dashboard-card-number">124</span>
-          <span className="dashboard-card-label">Alunos ativos</span>
+
+        {/* Card 2: Atendimentos Hoje */}
+        <div style={styles.metricCard}>
+          <div style={styles.cardHeader}>
+            <span style={styles.cardLabel}>Atendimentos no Mês</span>
+            <span style={styles.cardIcon}>🩺</span>
+          </div>
+          <div style={styles.cardNumber}>08</div>
+          <span style={styles.cardDesc}>Registros realizados</span>
         </div>
-        <div className="dashboard-card">
-          <span className="dashboard-card-number">05</span>
-          <span className="dashboard-card-label">Relatórios pendentes</span>
+
+        {/* Card 3: Relatórios Pendentes */}
+        <div style={styles.metricCard}>
+          <div style={styles.cardHeader}>
+            <span style={styles.cardLabel}>Relatórios</span>
+            <span style={styles.cardIcon}>📄</span>
+          </div>
+          <div style={styles.cardNumber}>05</div>
+          <span style={styles.cardDesc}>Acompanhamentos pendentes</span>
         </div>
-        <div className="dashboard-card">
-          <span className="dashboard-card-number">03</span>
-          <span className="dashboard-card-label">Alertas importantes</span>
+
+        {/* Card 4: Alertas Importantes */}
+        <div style={styles.metricCard}>
+          <div style={styles.cardHeader}>
+            <span style={styles.cardLabel}>Alertas</span>
+            <span style={styles.cardIcon}>⚠️</span>
+          </div>
+          <div style={{ ...styles.cardNumber, color: "#d97706" }}>03</div>
+          <span style={styles.cardDesc}>Casos prioritários</span>
         </div>
       </div>
 
-      <div className="dashboard-row">
-        <div className="dashboard-panel">
-          <h2>Próximos atendimentos</h2>
-          <ul className="dashboard-list">
-            {proximosAtendimentos.map((item, i) => (
-              <li key={i}>
-                <strong>{item.hora}</strong> {item.nome}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="dashboard-panel">
-          <h2>Ações rápidas</h2>
-          <div className="dashboard-actions">
-            <button onClick={() => router.push("/atendimentos")}>+ Novo atendimento</button>
-            <button onClick={() => router.push("/alunos")}>+ Novo aluno</button>
-            <button onClick={() => router.push("/relatorios")}>+ Novo relatório</button>
-            <button onClick={() => router.push("/agenda")}>📅 Agenda</button>
-          </div>
+      {/* Painel Central: Acesso Direto com Banner Bonito */}
+      <div style={styles.bannerContainer}>
+        <div style={styles.bannerInfo}>
+          <h2 style={styles.bannerTitle}>Gestão de Alunos e Atendimentos</h2>
+          <p style={styles.bannerText}>
+            Para registrar uma nova sessão, acesse a ficha do aluno correspondente e clique no botão de atendimento individual.
+          </p>
+          <button
+            onClick={() => router.push("/alunos")}
+            style={styles.btnAcessarAlunos}
+          >
+            Acessar Meus Alunos
+          </button>
         </div>
       </div>
     </div>
   );
 }
+
+const styles = {
+  pageWrapper: {
+    padding: "36px 40px",
+    backgroundColor: "#f4f7fb", // Fundo cinza-azulado suave combinando com o menu
+    minHeight: "100vh",
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    boxSizing: "border-box"
+  },
+  header: {
+    marginBottom: "30px"
+  },
+  title: {
+    fontSize: "1.9rem",
+    fontWeight: "700",
+    color: "#1a3b5c", // Azul escuro do seu menu lateral
+    margin: "0 0 6px 0"
+  },
+  subtitle: {
+    fontSize: "0.95rem",
+    color: "#64748b",
+    margin: 0
+  },
+  metricsGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: "20px",
+    marginBottom: "32px"
+  },
+  metricCard: {
+    backgroundColor: "#ffffff",
+    borderRadius: "16px",
+    padding: "24px",
+    border: "1px solid #e2e8f0",
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.03)",
+    display: "flex",
+    flexDirection: "column"
+  },
+  cardDestaque: {
+    backgroundColor: "#ffffff",
+    borderRadius: "16px",
+    padding: "24px",
+    border: "2px solid #1a3b5c",
+    boxShadow: "0 4px 12px rgba(26, 59, 92, 0.08)",
+    display: "flex",
+    flexDirection: "column",
+    cursor: "pointer",
+    transition: "transform 0.15s ease"
+  },
+  cardHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "8px"
+  },
+  cardLabel: {
+    fontSize: "0.85rem",
+    fontWeight: "600",
+    color: "#64748b",
+    textTransform: "uppercase",
+    letterSpacing: "0.04em"
+  },
+  cardIcon: {
+    fontSize: "1.2rem"
+  },
+  cardNumber: {
+    fontSize: "2.2rem",
+    fontWeight: "800",
+    color: "#1e293b",
+    lineHeight: "1.1",
+    marginBottom: "6px"
+  },
+  cardNumberDestaque: {
+    fontSize: "2.2rem",
+    fontWeight: "800",
+    color: "#1a3b5c",
+    lineHeight: "1.1",
+    marginBottom: "6px"
+  },
+  cardDesc: {
+    fontSize: "0.82rem",
+    color: "#94a3b8"
+  },
+  cardLink: {
+    fontSize: "0.85rem",
+    fontWeight: "700",
+    color: "#1a3b5c"
+  },
+  bannerContainer: {
+    backgroundColor: "#ffffff",
+    borderRadius: "16px",
+    padding: "32px",
+    border: "1px solid #e2e8f0",
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.03)"
+  },
+  bannerInfo: {
+    maxWidth: "600px"
+  },
+  bannerTitle: {
+    fontSize: "1.3rem",
+    fontWeight: "700",
+    color: "#1a3b5c",
+    margin: "0 0 10px 0"
+  },
+  bannerText: {
+    fontSize: "0.95rem",
+    color: "#64748b",
+    lineHeight: "1.5",
+    marginBottom: "20px"
+  },
+  btnAcessarAlunos: {
+    backgroundColor: "#1a3b5c", // O mesmo azul escuro da sua barra lateral
+    color: "#ffffff",
+    border: "none",
+    borderRadius: "10px",
+    padding: "12px 24px",
+    fontSize: "0.95rem",
+    fontWeight: "600",
+    cursor: "pointer",
+    boxShadow: "0 2px 8px rgba(26, 59, 92, 0.2)"
+  }
+};

@@ -68,7 +68,7 @@
 }
 
 .historico-busca:focus {
-  border-color: #3b6fe0;
+  border-color: #0a3d62;
 }
 
 .historico-busca::placeholder {
@@ -136,8 +136,7 @@
 }
 
 .historico-ponto--azul {
-  background: #3b6fe0;
-}
+  background: #0a3d62;
 
 .historico-ponto--amarelo {
   background: #f2a93b;
@@ -166,4 +165,5 @@
   color: #5b6472;
   margin: 0;
   line-height: 1.4;
+}
 }

@@ -19,9 +19,6 @@ export default function Sidebar() {
         <Link href="/" className="sidebar-link">
           <Home size={18} /> Início
         </Link>
-        <Link href="/atendimentos" className="sidebar-link">
-          <Files size={18} /> Atendimentos
-        </Link>
         <Link href="/alunos" className="sidebar-link">
           <Users size={18} /> Alunos
         </Link>
