@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { Users, Stethoscope, FileText, AlertTriangle } from "lucide-react";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -10,7 +11,7 @@ export default function Dashboard() {
       {/* Cabeçalho */}
       <header style={styles.header}>
         <div>
-          <h1 style={styles.title}>Olá, Psicopedagoga! 👋</h1>
+          <h1 style={styles.title}>Olá, Psicopedagoga!</h1>
           <p style={styles.subtitle}>
             Plataforma de Suporte Psicopedagógico (PSIF) • Visão Geral
           </p>
@@ -22,21 +23,21 @@ export default function Dashboard() {
         {/* Card 1: Alunos Ativos (Em destaque, clicável) */}
         <div
           style={styles.cardDestaque}
-          onClick={() => router.push("/alunos")}
+          
         >
           <div style={styles.cardHeader}>
             <span style={styles.cardLabel}>Alunos Ativos</span>
-            <span style={styles.cardIcon}>👥</span>
+            <span style={styles.cardIcon}><Users size={22} /></span>
           </div>
           <div style={styles.cardNumberDestaque}>124</div>
-          <span style={styles.cardLink}>Ver todos os alunos →</span>
+         
         </div>
 
         {/* Card 2: Atendimentos Hoje */}
         <div style={styles.metricCard}>
           <div style={styles.cardHeader}>
             <span style={styles.cardLabel}>Atendimentos no Mês</span>
-            <span style={styles.cardIcon}>🩺</span>
+            <span style={styles.cardIcon}><Stethoscope size={22} /></span>
           </div>
           <div style={styles.cardNumber}>08</div>
           <span style={styles.cardDesc}>Registros realizados</span>
@@ -46,7 +47,7 @@ export default function Dashboard() {
         <div style={styles.metricCard}>
           <div style={styles.cardHeader}>
             <span style={styles.cardLabel}>Relatórios</span>
-            <span style={styles.cardIcon}>📄</span>
+            <span style={styles.cardIcon}><FileText size={22} /></span>
           </div>
           <div style={styles.cardNumber}>05</div>
           <span style={styles.cardDesc}>Acompanhamentos pendentes</span>
@@ -56,7 +57,7 @@ export default function Dashboard() {
         <div style={styles.metricCard}>
           <div style={styles.cardHeader}>
             <span style={styles.cardLabel}>Alertas</span>
-            <span style={styles.cardIcon}>⚠️</span>
+            <span style={{ ...styles.cardIcon, color: "#d97706" }}><AlertTriangle size={22} /></span>
           </div>
           <div style={{ ...styles.cardNumber, color: "#d97706" }}>03</div>
           <span style={styles.cardDesc}>Casos prioritários</span>
@@ -85,7 +86,7 @@ export default function Dashboard() {
 const styles = {
   pageWrapper: {
     padding: "36px 40px",
-    backgroundColor: "#f4f7fb", // Fundo cinza-azulado suave combinando com o menu
+    backgroundColor: "#f4f7fb",
     minHeight: "100vh",
     fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
     boxSizing: "border-box"
@@ -96,7 +97,7 @@ const styles = {
   title: {
     fontSize: "1.9rem",
     fontWeight: "700",
-    color: "#1a3b5c", // Azul escuro do seu menu lateral
+    color: "#1a3b5c",
     margin: "0 0 6px 0"
   },
   subtitle: {
@@ -119,17 +120,15 @@ const styles = {
     display: "flex",
     flexDirection: "column"
   },
-  cardDestaque: {
-    backgroundColor: "#ffffff",
-    borderRadius: "16px",
-    padding: "24px",
-    border: "2px solid #1a3b5c",
-    boxShadow: "0 4px 12px rgba(26, 59, 92, 0.08)",
-    display: "flex",
-    flexDirection: "column",
-    cursor: "pointer",
-    transition: "transform 0.15s ease"
-  },
+ cardDestaque: {
+  backgroundColor: "#ffffff",
+  borderRadius: "16px",
+  padding: "24px",
+  border: "1px solid #e2e8f0",
+  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.03)",
+  display: "flex",
+  flexDirection: "column"
+},
   cardHeader: {
     display: "flex",
     justifyContent: "space-between",
@@ -144,7 +143,9 @@ const styles = {
     letterSpacing: "0.04em"
   },
   cardIcon: {
-    fontSize: "1.2rem"
+    display: "flex",
+    alignItems: "center",
+    color: "#1a3b5c"
   },
   cardNumber: {
     fontSize: "2.2rem",
@@ -192,7 +193,7 @@ const styles = {
     marginBottom: "20px"
   },
   btnAcessarAlunos: {
-    backgroundColor: "#1a3b5c", // O mesmo azul escuro da sua barra lateral
+    backgroundColor: "#1a3b5c",
     color: "#ffffff",
     border: "none",
     borderRadius: "10px",

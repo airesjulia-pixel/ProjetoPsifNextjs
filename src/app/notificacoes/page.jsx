@@ -1,9 +1,9 @@
+import { Bell, Home, Settings } from "lucide-react";
 import "./Notificacoes.css";
 
 const notificacoes = [
-  { texto: "Novo relatório enviado — Anitta Peniwyse", tempo: "10 min" },
-  { texto: "José possui atendimento hoje", tempo: "20 min" },
-  { texto: "Documento anexado ao prontuário de Valquíria", tempo: "1h" },
+  { texto: "Novo relatório enviado —  Ana Silva", tempo: "10 min" },
+  // ... resto dos itens
 ];
 
 export default function Notificacoes() {
@@ -13,7 +13,11 @@ export default function Notificacoes() {
       <div className="notificacoes-lista">
         {notificacoes.map((n, i) => (
           <div className="notificacao-item" key={i}>
-            🔔 <div><p>{n.texto}</p><span>{n.tempo}</span></div>
+            <Bell size={20} />
+            <div>
+              <p>{n.texto}</p>
+              <span>{n.tempo}</span>
+            </div>
           </div>
         ))}
       </div>

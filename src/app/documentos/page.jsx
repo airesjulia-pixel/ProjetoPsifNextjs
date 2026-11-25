@@ -1,3 +1,4 @@
+import { FileText } from "lucide-react";
 import "./Documentos.css";
 
 const documentos = [
@@ -14,7 +15,11 @@ export default function Documentos() {
       <div className="documentos-lista">
         {documentos.map((doc, i) => (
           <div className="documento-item" key={i}>
-            📄 <div><strong>{doc.nome}</strong><span>{doc.tamanho}</span></div>
+            <FileText size={22} />
+            <div>
+              <strong>{doc.nome}</strong>
+              <span>{doc.tamanho}</span>
+            </div>
           </div>
         ))}
       </div>

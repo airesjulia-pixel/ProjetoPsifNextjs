@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import "./Agenda.css";
 
 const atendimentosHoje = [
-  { hora: "09:00", nome: "Anitta Peniwyse", tipo: "Atendimento individual" },
+  { hora: "09:00", nome: "Ana Silva", tipo: "Atendimento individual" },
   { hora: "10:30", nome: "José", tipo: "Reunião com professor" },
 ];
 

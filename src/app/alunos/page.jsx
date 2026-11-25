@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { Search, ArrowRight } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
 
 const filtrosOpcoes = ["Todos", "1ª série", "2ª série", "3ª série"];
@@ -18,7 +19,7 @@ export default function MeusAlunos() {
         setCarregando(true);
         const { data, error } = await supabase
           .from("alunos")
-          .select("*");
+          .select("*, turma(curso, periodo, ano)");
 
         if (error) {
           console.error("Erro ao carregar alunos:", error.message);
@@ -45,7 +46,8 @@ export default function MeusAlunos() {
       aluno.matricula?.toLowerCase().includes(termo);
     const bateFiltro =
       filtroAtivo === "Todos" ||
-      aluno.turma?.toLowerCase().includes(filtroAtivo.toLowerCase());
+      aluno.turma?.curso?.toLowerCase().includes(filtroAtivo.toLowerCase()) ||
+      aluno.turma?.periodo?.toLowerCase().includes(filtroAtivo.toLowerCase());
     return bateBusca && bateFiltro;
   });
 
@@ -65,11 +67,12 @@ export default function MeusAlunos() {
           </p>
         </header>
 
-        {/* Barra de Filtros AGRUPADA na esquerda (sem jogar nada pra longe) */}
+        {/* Barra de Filtros */}
         <div style={styles.filterToolbar}>
-          {/* Campo de Busca */}
           <div style={styles.searchContainer}>
-            <span style={styles.searchIcon}>🔍</span>
+            <span style={styles.searchIcon}>
+              <Search size={18} />
+            </span>
             <input
               type="text"
               placeholder="Pesquisar por nome ou matrícula..."
@@ -79,7 +82,6 @@ export default function MeusAlunos() {
             />
           </div>
 
-          {/* Botões de Filtro colados junto com a busca */}
           <div style={styles.pillsContainer}>
             {filtrosOpcoes.map((opcao) => {
               const ativo = filtroAtivo === opcao;
@@ -116,16 +118,15 @@ export default function MeusAlunos() {
           </div>
         )}
 
-        {/* Grade de Cartões organizada e proporcional */}
+        {/* Grade de Cartões */}
         {!carregando && (
           <div style={styles.gridAlunos}>
             {alunosFiltrados.map((aluno) => (
               <Link
-                key={aluno.id}
-                href={`/alunos/${aluno.id}`}
+                key={aluno.matricula}
+                href={`/alunos/${aluno.matricula}`}
                 style={styles.cardAluno}
               >
-                {/* Topo do Card */}
                 <div style={styles.cardTop}>
                   <div style={styles.avatar}>
                     {aluno.nome?.[0] || "?"}
@@ -135,23 +136,23 @@ export default function MeusAlunos() {
                   </span>
                 </div>
 
-                {/* Informações Centrais */}
                 <div style={styles.cardInfo}>
                   <strong style={styles.alunoNome}>{aluno.nome}</strong>
                   <div style={styles.alunoDetalhe}>
-                    <span>{aluno.curso}</span>
+                    <span>{aluno.turma?.curso}</span>
                     <span>•</span>
-                    <span>{aluno.turma}</span>
+                    <span>{aluno.turma?.periodo}</span>
                   </div>
                   <div style={styles.alunoMatricula}>
                     Matrícula: <strong>{aluno.matricula}</strong>
                   </div>
                 </div>
 
-                {/* Rodapé do Card */}
                 <div style={styles.cardFooter}>
                   <span style={styles.linkText}>Ver ficha completa</span>
-                  <span style={styles.arrowIcon}>→</span>
+                  <span style={styles.arrowIcon}>
+                    <ArrowRight size={18} />
+                  </span>
                 </div>
               </Link>
             ))}
@@ -171,7 +172,6 @@ const styles = {
     boxSizing: "border-box",
     fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
   },
-  // Limita a largura máxima para a tela não ficar espalhada em monitores ultrawide
   contentContainer: {
     maxWidth: "1150px",
     width: "100%"
@@ -198,7 +198,6 @@ const styles = {
     color: "#64748b",
     margin: "6px 0 0 0"
   },
-  // Barra de ferramentas agrupada na esquerda
   filterToolbar: {
     display: "flex",
     alignItems: "center",
@@ -217,6 +216,8 @@ const styles = {
     boxShadow: "0 1px 3px rgba(0,0,0,0.03)"
   },
   searchIcon: {
+    display: "flex",
+    alignItems: "center",
     marginRight: "8px",
     color: "#94a3b8"
   },
@@ -250,7 +251,6 @@ const styles = {
     textAlign: "center",
     border: "1px solid #e2e8f0"
   },
-  // Grade travada em tamanhos proporcionais (não fica esticando no vazio)
   gridAlunos: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fill, minmax(280px, 340px))",
@@ -333,8 +333,8 @@ const styles = {
     color: "#1a3b5c"
   },
   arrowIcon: {
-    color: "#1a3b5c",
-    fontWeight: "700",
-    fontSize: "1rem"
+    display: "flex",
+    alignItems: "center",
+    color: "#1a3b5c"
   }
 };
