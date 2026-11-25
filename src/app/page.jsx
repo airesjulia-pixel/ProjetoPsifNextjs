@@ -2,13 +2,20 @@
 
 import { useRouter } from "next/navigation";
 import { Users, Stethoscope, FileText, AlertTriangle } from "lucide-react";
+import { createClient } from "@/lib/supabase";
 
-export default function Dashboard() {
+export default function Home() {
   const router = useRouter();
+  const supabase = createClient();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    window.location.href = "/login";
+  };
 
   return (
     <div style={styles.pageWrapper}>
-      {/* Cabeçalho */}
+      {/* Cabeçalho com botão de Sair */}
       <header style={styles.header}>
         <div>
           <h1 style={styles.title}>Olá, Psicopedagoga!</h1>
@@ -16,24 +23,21 @@ export default function Dashboard() {
             Plataforma de Suporte Psicopedagógico (PSIF) • Visão Geral
           </p>
         </div>
+        <button onClick={handleLogout} style={styles.btnLogout}>
+          Sair
+        </button>
       </header>
 
-      {/* Grade com os 4 Cards de Métricas do Figma */}
+      {/* Grade com os 4 Cards de Métricas */}
       <div style={styles.metricsGrid}>
-        {/* Card 1: Alunos Ativos (Em destaque, clicável) */}
-        <div
-          style={styles.cardDestaque}
-          
-        >
+        <div style={styles.cardDestaque}>
           <div style={styles.cardHeader}>
             <span style={styles.cardLabel}>Alunos Ativos</span>
             <span style={styles.cardIcon}><Users size={22} /></span>
           </div>
           <div style={styles.cardNumberDestaque}>124</div>
-         
         </div>
 
-        {/* Card 2: Atendimentos Hoje */}
         <div style={styles.metricCard}>
           <div style={styles.cardHeader}>
             <span style={styles.cardLabel}>Atendimentos no Mês</span>
@@ -43,7 +47,6 @@ export default function Dashboard() {
           <span style={styles.cardDesc}>Registros realizados</span>
         </div>
 
-        {/* Card 3: Relatórios Pendentes */}
         <div style={styles.metricCard}>
           <div style={styles.cardHeader}>
             <span style={styles.cardLabel}>Relatórios</span>
@@ -53,7 +56,6 @@ export default function Dashboard() {
           <span style={styles.cardDesc}>Acompanhamentos pendentes</span>
         </div>
 
-        {/* Card 4: Alertas Importantes */}
         <div style={styles.metricCard}>
           <div style={styles.cardHeader}>
             <span style={styles.cardLabel}>Alertas</span>
@@ -64,7 +66,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Painel Central: Acesso Direto com Banner Bonito */}
+      {/* Painel Central */}
       <div style={styles.bannerContainer}>
         <div style={styles.bannerInfo}>
           <h2 style={styles.bannerTitle}>Gestão de Alunos e Atendimentos</h2>
@@ -92,6 +94,9 @@ const styles = {
     boxSizing: "border-box"
   },
   header: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: "30px"
   },
   title: {
@@ -104,6 +109,15 @@ const styles = {
     fontSize: "0.95rem",
     color: "#64748b",
     margin: 0
+  },
+  btnLogout: {
+    backgroundColor: "#fee2e2",
+    color: "#991b1b",
+    border: "none",
+    borderRadius: "8px",
+    padding: "8px 16px",
+    fontWeight: "600",
+    cursor: "pointer"
   },
   metricsGrid: {
     display: "grid",
@@ -120,15 +134,15 @@ const styles = {
     display: "flex",
     flexDirection: "column"
   },
- cardDestaque: {
-  backgroundColor: "#ffffff",
-  borderRadius: "16px",
-  padding: "24px",
-  border: "1px solid #e2e8f0",
-  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.03)",
-  display: "flex",
-  flexDirection: "column"
-},
+  cardDestaque: {
+    backgroundColor: "#ffffff",
+    borderRadius: "16px",
+    padding: "24px",
+    border: "1px solid #e2e8f0",
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.03)",
+    display: "flex",
+    flexDirection: "column"
+  },
   cardHeader: {
     display: "flex",
     justifyContent: "space-between",
@@ -164,11 +178,6 @@ const styles = {
   cardDesc: {
     fontSize: "0.82rem",
     color: "#94a3b8"
-  },
-  cardLink: {
-    fontSize: "0.85rem",
-    fontWeight: "700",
-    color: "#1a3b5c"
   },
   bannerContainer: {
     backgroundColor: "#ffffff",

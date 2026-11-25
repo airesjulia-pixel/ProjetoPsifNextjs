@@ -1,18 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import Login from "../components/Login";
-import Layout from "../components/Layout";
-//import "./globals.css";
+import { usePathname } from "next/navigation";
+import Layout from "../components/Layout"; // Mantém o seu componente de layout original
 
 const estiloFonte = `
-  * {
+* {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
   }
 `;
 
 export default function RootLayout({ children }) {
-  const [usuario, setUsuario] = useState(null);
+  const pathname = usePathname();
+  const isLoginPage = pathname?.startsWith("/login");
 
   return (
     <html lang="pt-BR">
@@ -26,9 +25,15 @@ export default function RootLayout({ children }) {
         <style dangerouslySetInnerHTML={{ __html: estiloFonte }} />
       </head>
       <body>
-        <Layout>
-          {children}
-        </Layout>
+        {isLoginPage ? (
+          // Se for /login: mostra APENAS a tela de login (sem a barra lateral)
+          <main>{children}</main>
+        ) : (
+          // Se for qualquer outra página: usa o seu Layout com a barra lateral
+          <Layout>
+            {children}
+          </Layout>
+        )}
       </body>
     </html>
   );

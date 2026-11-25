@@ -25,9 +25,7 @@ export default function Agenda() {
           </div>
         ))}
       </div>
-      <button className="agenda-novo" onClick={() => router.push("/atendimentos")}>
-        + Novo agendamento
-      </button>
+     
     </div>
   );
 }
